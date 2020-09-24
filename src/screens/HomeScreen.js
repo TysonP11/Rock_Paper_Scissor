@@ -1,5 +1,9 @@
 import React, { useReducer } from 'react';
 import { StyleSheet, Text, View, Image, Button, FlatList } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import ButtonContainer from './components/ButtonContainer';
+import GameBoard from './components/GameBoard';
+import GameScoreCard from './components/GameScoreCard';
 
 const ROCK = 1;
 const PAPER = 2;
@@ -153,7 +157,7 @@ const reducer = (state, { type, payload }) => {
   }
 };
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [state, dispatch] = useReducer(reducer, {
     playerScore: 0,
     computerScore: 0,
@@ -164,70 +168,71 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      {history.length > 0 ? (
-        <FlatList
-          horizontal
-          data={history}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item }) => {
-            return (
-              <View
-                style={{
-                  borderWidth: 1,
-                  margin: 5,
-                  borderColor: 'black',
-                  justifyContent: 'center',
-                }}
-              >
-                <Text>Player: {item.playerChoice}</Text>
-                <Text>Computer: {item.computerChoice}</Text>
-                <Text>Player Score: {item.playerScore}</Text>
-                <Text>Computer Score: {item.computerScore}</Text>
-                <Text>Game Result: {item.gameResult}</Text>
-              </View>
-            );
-          }}
+      {/* <View
+        style={{
+          flex: 1,
+        }}
+      >
+        {history.length > 0 ? (
+          <FlatList
+            horizontal
+            data={history}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => {
+              return (
+                <View
+                  style={{
+                    borderWidth: 1,
+                    margin: 5,
+                    borderColor: 'black',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Text>Player: {item.playerChoice}</Text>
+                  <Text>Computer: {item.computerChoice}</Text>
+                  <Text>Player Score: {item.playerScore}</Text>
+                  <Text>Computer Score: {item.computerScore}</Text>
+                  <Text>Game Result: {item.gameResult}</Text>
+                </View>
+              );
+            }}
+          />
+        ) : null}
+      </View> */}
+      <GameBoard data={history} />
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('History');
+        }}
+      >
+        <GameScoreCard
+          playerScore={playerScore}
+          computerScore={computerScore}
         />
-      ) : null}
+      </TouchableOpacity>
 
-      <Text style={{ marginVertical: 10, textAlign: 'center' }}>
-        {playerScore} - {computerScore}
-      </Text>
-      {history.length > 0 ? (
-        <Text style={{ marginVertical: 10, textAlign: 'center' }}>
-          {history[0].gameResult}
-        </Text>
-      ) : null}
-      <View style={styles.buttonContainer}>
-        <Button
-          title='Rock'
-          onPress={() =>
+      <ButtonContainer
+        action={[
+          () => {
             dispatch({
               type: 'choose_rock',
               payload: Math.floor(Math.random() * 3) + 1,
-            })
-          }
-          //console.log(playerScore + ' - ' + computerScore);
-        />
-        <Button
-          title='Paper'
-          onPress={() =>
+            });
+          },
+          () => {
             dispatch({
-              type: 'choose_paper',
+              type: 'choose_rock',
               payload: Math.floor(Math.random() * 3) + 1,
-            })
-          }
-        />
-        <Button
-          title='Scissor'
-          onPress={() =>
-            dispatch({
-              type: 'choose_paper',
-              payload: Math.floor(Math.random() * 3) + 1,
-            })
-          }
-        />
-      </View>
+            });
+          },
+        ]}
+        choosePaper={() =>
+          dispatch({
+            type: 'choose_paper',
+            payload: Math.floor(Math.random() * 3) + 1,
+          })
+        }
+      />
     </View>
   );
 };
@@ -237,12 +242,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'red',
-    paddingVertical: 30,
-  },
+  //   buttonContainer: {
+  //     flexDirection: 'row',
+  //     justifyContent: 'space-around',
+  //     backgroundColor: 'red',
+  //     paddingVertical: 30,
+  //   },
 });
 
 export default HomeScreen;
