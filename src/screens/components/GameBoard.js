@@ -11,17 +11,21 @@ const GameBoard = (props) => {
     } else return require('../../../assets/scissors.png');
   };
 
-  if (props.data.length === 0) {
-    var containerStyle = styles.containerTieColor;
-  } else {
-    if (props.data[0].gameResult === 'TIE') {
-      containerStyle = styles.containerTieColor;
-    } else if (props.data[0].gameResult === 'Computer Wins') {
-      containerStyle = styles.containerLoseColor;
+  const getContainerStyle = () => {
+    if (props.data.length === 0) {
+      return styles.containerTieColor;
     } else {
-      containerStyle = styles.containerWinColor;
+      if (props.data[0].gameResult === 'TIE') {
+        return styles.containerTieColor;
+      } else if (props.data[0].gameResult === 'Computer Wins') {
+        return styles.containerLoseColor;
+      } else {
+        return styles.containerWinColor;
+      }
     }
-  }
+  };
+
+  const containerStyle = getContainerStyle();
 
   const playerImagePath =
     props.data.length === 0

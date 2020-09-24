@@ -19,6 +19,7 @@ const PlayerChoice = (props) => {
           //marginTop: 20,
         }}
         resizeMode='contain'
+        fadeDuration={0}
       />
     </View>
   );

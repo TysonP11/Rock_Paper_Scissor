@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const ChoiceOption = (props) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={props.action}>
+      <TouchableOpacity onPress={props.action} activeOpacity={0.1}>
         <Image style={styles.logo} source={props.path} resizeMode='contain' />
       </TouchableOpacity>
     </View>

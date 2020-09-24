@@ -221,14 +221,14 @@ const HomeScreen = ({ navigation }) => {
           },
           () => {
             dispatch({
-              type: 'choose_rock',
+              type: 'choose_paper',
               payload: Math.floor(Math.random() * 3) + 1,
             });
           },
         ]}
         choosePaper={() =>
           dispatch({
-            type: 'choose_paper',
+            type: 'choose_scissors',
             payload: Math.floor(Math.random() * 3) + 1,
           })
         }
