@@ -6,6 +6,10 @@ import HistoryTop from './components/HistoryTop';
 
 const HistoryScreen = ({ navigation }) => {
   const history = navigation.getParam('games');
+  history.forEach((item, i) => {
+    item.key = i.toString();
+  });
+  console.log(history);
 
   return (
     <View style={styles.container}>
@@ -48,11 +52,11 @@ const HistoryScreen = ({ navigation }) => {
         <View style={styles.gamesDetail}>
           <FlatList
             data={history}
-            keyExtractor={(item, index) => index.toString()}
+            // keyExtractor={(item, index) => index.toString()}
             renderItem={({ item }) => {
               return <GameDetail info={item} />;
             }}
-          ></FlatList>
+          />
         </View>
       )}
     </View>

@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 const GameDetail = ({ info }) => {
+  console.log(info);
   const getImagePath = (choice) => {
     if (choice === 1) {
       return require('../../../assets/rock.png');
