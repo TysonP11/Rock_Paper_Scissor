@@ -8,6 +8,4 @@ Facebook DevC ASM week 3
 
 
 ### Game History
-<img src='./assets/screenshot3.jpg' alt='Static Screenshot' width='40%' height='40%'/>
-
-<img src='./assets/screenshot4.jpg' alt='Static Screenshot' width='40%' height='40%'/>
+<img src='./assets/screenshot3.jpg' alt='Static Screenshot' width='40%' height='40%'/> <img src='./assets/screenshot4.jpg' alt='Static Screenshot' width='40%' height='40%'/>
