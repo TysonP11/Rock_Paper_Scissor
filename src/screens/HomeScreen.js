@@ -202,7 +202,7 @@ const HomeScreen = ({ navigation }) => {
       <GameBoard data={history} />
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('History');
+          navigation.navigate('History', { games: history });
         }}
       >
         <GameScoreCard
